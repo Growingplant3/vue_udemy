@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+  <html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="vue.js"></script>
+
+    <div id="app">
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMessage">メッセージ反転</button>
+      <p>{{ number + 3 }}</p>
+      <p>{{ ok ? 'YES' : 'NO' }}</p>
+      <p>{{ sayHi() }}</p>
+      <p v-once="message"></p>
+      <p>{{ html }}</p>
+      <div v-html="html"></div>
+      <a :href="url">Google</a>
+      <a :[attribute]="url">google</a>
+      <!-- <a :href="urlTwitter" :id="number">Twitter</a> -->
+      <a v-bind="twitterObject">Twitter</a>
+      <p>現在{{ numelix }}回クリックされています</p>
+      <!-- <button v-on:click="numelix += 1">カウントアップ</button> -->
+      <button v-on:click="countUp">カウントアップ</button>
+    </div>
+    
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          message: "HelloWorld!",
+          number: 3,
+          ok: false,
+          html: '<h1>h1です。</h1>',
+          url: "https://google.com",
+          attribute: 'href',
+          // urlTwitter: 'https://twitter.com',
+          // number: 31,
+          twitterObject: {
+            href: "https://twitter.com",
+            id: 31
+          },
+          numelix: 0
+        },
+        methods: {
+          reverseMessage: function() {
+            this.message = this.message.split('').reverse().join('')
+          },
+          sayHi: function() {
+            this.message = "Hello VueJS"
+            return 'Hi';
+          },
+          countUp: function() {
+            this.numelix += 1
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
